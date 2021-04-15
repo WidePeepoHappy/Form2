@@ -1,0 +1,47 @@
+$colors: (
+  primary: #427d94,
+  on-primary: #fff,
+  error: #b91f1f,
+  complete: #429459,
+);
+$font-sizes: (
+  large: 22px,
+  medium: 18px,
+  small: 16px,
+  error: 14px,
+);
+$font-weights: (
+  thin: 500,
+  bold: 600,
+);
+@mixin font($font-size, $color, $font-weight: 400) {
+  font-size: map-get($font-sizes, $font-size);
+  font-weight: map-get($font-weights, $font-weight);
+  color: color($color);
+}
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+@mixin width($value) {
+  width: $value;
+}
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+%default-border {
+  border: 3px solid color(primary);
+}
+@mixin checkmark($height, $width, $top: auto, $left: auto) {
+  position: absolute;
+  height: $height;
+  width: $width;
+  top: $top;
+  left: $left;
+}
+@mixin mobile {
+  @media (max-width: 420px) {
+    @content;
+  }
+}
